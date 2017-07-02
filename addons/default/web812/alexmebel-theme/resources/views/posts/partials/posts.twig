@@ -1,0 +1,24 @@
+{% for post in posts %}
+  <article class="post">
+    <header>
+      <h2>
+        <a href="{{ post.route('view') }}">{{ post.title }}</a>
+      </h2>
+      {% if post.category.slug == 'akcii' %}
+        <p>Акция действует с {{ post.akciya_dejstvuet_s.date }} по {{ post.akciya_dejstvuet_do.date }}</p>
+        <a href="{{ post.route('view') }}">
+          <img class="img-responsive" src="{{ post.baner.url }}" />
+        </a>
+      {% endif %}
+      {# <div class="meta">
+      </div> #}
+    </header>
+    <div class="summary">
+      {% if post.summary %}
+        <p>
+          {{ post.summary|nl2br|raw }}
+        </p>
+      {% endif %}
+    </div>
+  </article>
+{% endfor %}

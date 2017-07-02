@@ -1,0 +1,12 @@
+{{ asset_add("theme.js", "theme::js/vendor/jquery.js") }}
+{{ asset_add("theme.js", "theme::js/vendor/bootstrap.min.js") }}
+{{ asset_add("theme.js", "theme::js/vendor/jquery.filterizr.js") }}
+{{ asset_add("theme.js", "theme::js/theme/initialize.js") }}
+{{ asset_add("theme.js", "theme::js/theme/jquery.maskedinput.min.js") }}
+
+{{ html_script(asset_path("theme.js", ["min"])) }}
+
+{# Include Scripts Loaded From Outside #}
+{% for script in asset_scripts("scripts.js") %}
+    {{ script|raw }}
+{% endfor %}

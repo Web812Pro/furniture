@@ -1,0 +1,62 @@
+{% set products = entries('pages', 'pages').where('type_id', '4').get() %}
+{% set categories =
+  not products
+  ? []
+  : products.first().entry.categories.options
+%}
+
+<div id="wrapper">
+  <div class="row">
+    <div class="col-md-3">
+      <div id="sidebar-wrapper">
+        <h3>Каталог</h3>
+        <ul class="sidebar-nav simplefilter">
+          <li class="list-group-item active" data-filter="all">Все модели</li>
+          {% for category in categories %}
+            <li class="list-group-item" data-filter="{{ loop.index }}">{{ category|trim }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div id="page-content-wrapper">
+        <div class="filtr-container container-fluid">
+          <div class="row">
+            {% for product in products %}
+              <div class="item col-xs-6 col-sm-4 col-md-3 filtr-item"
+                data-category="{% for cat in product.categories.keys %}{{ cat }}{% if not loop.last %},{% endif %}{% endfor %}"
+              >
+                <a
+                  data-identifier="{{ product.title }}"
+                  href="#modal-product"
+                  data-toggle="modal"
+                >
+                  <img class="thumbnail img-responsive"
+                    data-identifier="{{ product.title }}"
+                    src="{{ product.pageimage.url }}"
+                    alt="{{ product.title }}"
+                  />
+                </a>
+                <span class="item-desc">
+                  {{ product.title }}
+                </span>
+                <div class="price">
+                  {{ product.price }} руб
+                </div>
+                <a
+                  href="#modal-call"
+                  class="btn btn-success pull-right"
+                  role="button"
+                  data-toggle="modal">
+                  Заказать
+                </a>
+              </div>
+              {{ loop.index }}
+            {% endfor %}
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

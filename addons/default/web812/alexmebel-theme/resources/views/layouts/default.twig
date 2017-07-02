@@ -1,0 +1,71 @@
+{% htmlcompress %}
+<!doctype html>
+<!--[if lt IE 7]>
+<html class="nojs ms lt_ie7" lang="en"><![endif]-->
+<!--[if IE 7]>
+    <html class="nojs ms ie7" lang="en"><![endif]-->
+<!--[if IE 8]>
+        <html class="nojs ms ie8" lang="en"><![endif]-->
+<!--[if gt IE 8]>
+            <html class="nojs ms" lang="en"><![endif]-->
+<html>
+
+<head>
+  {% include 'theme::partials/metadata' %}
+</head>
+
+<body>
+
+  {% include 'theme::partials/header' %}
+
+  {% if (request_path() == '/') %}
+    {% include 'theme::partials/jumbotron' %}
+  {% endif %}
+
+  <main id="main">
+    <div class="bg container">
+      {% include 'theme::partials/messages' %}
+
+      {% block content %}{% endblock %}
+
+      {% if (request_path() == '/posts') %}
+        <hr>
+        {% include 'theme::partials/posts' %}
+      {% endif %}
+    </div>
+  </main>
+
+  {% include 'theme::partials/footer' %}
+  {% include 'theme::partials/modals' %}
+  {% include 'theme::partials/assets' %}
+
+  <script type="text/javascript">
+
+  $(function () {
+    var $modalCall = $('#modal-call');
+    var $modalProduct = $('#modal-product');
+
+    var getModalElement = function ($modal, selector) {
+      return $modal.find(selector);
+    };
+
+    var clearModal = function ($modal) {
+      getModalElement($modal, '.modal-title').empty();
+      getModalElement($modal, '.modal-body').empty();
+    };
+
+    var fillModal = function ($modal, arguments) {
+      getModalElement($modal, '.modal-title').html(arguments.title);
+      getModalElement($modal, '.modal-body').html(arguments.body);
+    };
+
+    //Initialize filterizr with default options
+    $('.filtr-container').filterizr();
+  });
+
+  </script>
+
+</body>
+
+</html>
+{% endhtmlcompress %}
