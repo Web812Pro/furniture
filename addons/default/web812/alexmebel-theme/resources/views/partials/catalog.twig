@@ -24,7 +24,7 @@
           <div class="row">
             {% for product in products %}
               <div class="item col-xs-6 col-sm-4 col-md-3 filtr-item"
-                data-category="{% for cat in product.categories.keys %}{{ cat }}{% if not loop.last %},{% endif %}{% endfor %}"
+                data-category="{% for cat in product.categories.keys %}{{ cat }}{% if not loop.last %}, {% endif %}{% endfor %}"
               >
                 <a
                   data-identifier="{{ product.title }}"
@@ -51,7 +51,6 @@
                   Заказать
                 </a>
               </div>
-              {{ loop.index }}
             {% endfor %}
 
           </div>
