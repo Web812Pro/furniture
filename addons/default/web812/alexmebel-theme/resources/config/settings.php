@@ -4,7 +4,7 @@ use Anomaly\UsersModule\Role\RoleModel;
 
 return [
     'notifiable_role' => [
-        'bind'        => 'web812.theme.alexmebel::notifiable_role',
+        'bind'        => 'web812.theme.alexmebel::config.notifiable_role',
         'env'         => 'NOTIFIABLE_ROLE',
         'required'    => true,
         'placeholder' => false,

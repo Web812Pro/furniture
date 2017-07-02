@@ -11,6 +11,7 @@ $(function () {
     $mainForm.on('submit', function (e) {
         var data = {
             phone: $phoneField.val(),
+            _token: CSRF_TOKEN,
         };
 
         $.ajax({
@@ -22,7 +23,7 @@ $(function () {
             },
             error: function (error) {
                 console.log(error);
-            }
+            },
         });
 
         return false;

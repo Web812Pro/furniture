@@ -11,20 +11,20 @@ class RequestFromSite extends Notification implements ShouldQueue
     use Queueable;
 
     /**
-     * Request request.
+     * Request data.
      *
      * @var array
      */
-    public $request;
+    public $data;
 
     /**
      * Create a new NewRequest instance.
      *
-     * @param $request
+     * @param $data
      */
-    public function __construct(array $request)
+    public function __construct(array $data)
     {
-        $this->request = $request;
+        $this->data = $data;
     }
 
     /**
@@ -46,14 +46,16 @@ class RequestFromSite extends Notification implements ShouldQueue
      */
     public function toMail(UserInterface $notifiable)
     {
-        $data = $notifiable->toArray();
-
         return (new MailMessage())
-            ->view('web812.theme.alexmebel::notifications.request', [
-                'phone' => array_get($this->request, 'phone'),
-            ])
-            ->subject(trans('web812.theme.alexmebel::notification.request.subject', $data))
-            ->greeting(trans('web812.theme.alexmebel::notification.request.greeting', $data))
-            ->line(trans('web812.theme.alexmebel::notification.request.instructions', $data));
+            ->view(
+                'web812.theme.alexmebel::notifications.request',
+                $this->data
+            )
+            ->subject(
+                trans(
+                    'web812.theme.alexmebel::notification.request.subject',
+                    $notifiable->toArray()
+                )
+            );
     }
 }

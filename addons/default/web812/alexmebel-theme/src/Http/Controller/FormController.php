@@ -1,9 +1,10 @@
 <?php namespace Web812\AlexmebelTheme\Http\Controller;
 
+use Anomaly\Streams\Platform\Http\Controller\PublicController;
 use Illuminate\Support\Facades\Validator;
 use Web812\AlexmebelTheme\Command\SendMailToManager;
 
-class FormController extends \Anomaly\Streams\Platform\Http\Controller\FormController
+class FormController extends PublicController
 {
 
     /**
@@ -11,14 +12,14 @@ class FormController extends \Anomaly\Streams\Platform\Http\Controller\FormContr
      *
      * @return Response
      */
-    public function request()
+    public function userRequest()
     {
-        if (!$this->request->ajax() || $this->request->method() != 'post')
+        if (!$this->request->ajax() || $this->request->method() != 'POST')
         {
             return $this->redirect->to('/');
         }
 
-        $data = $this->request->all();
+        $data = array_except($this->request->all(), ['_token']) ;
 
         $validator = Validator::make($data, ['phone' => 'required']);
 
@@ -27,10 +28,7 @@ class FormController extends \Anomaly\Streams\Platform\Http\Controller\FormContr
             return $this->returnError($validator->errors());
         }
 
-        if (!$this->dispatch(new SendMailToManager($data)))
-        {
-            return $this->returnError('Can\'t send mail');
-        }
+        $this->dispatch(new SendMailToManager($data));
 
         return $this->returnSuccess($data);
     }

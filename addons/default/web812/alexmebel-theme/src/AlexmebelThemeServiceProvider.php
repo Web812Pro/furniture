@@ -20,6 +20,6 @@ class AlexmebelThemeServiceProvider extends AddonServiceProvider
      * @var array
      */
     protected $routes = [
-        'request' => 'Web812\AlexmebelTheme\Http\Controller\FormController@request',
+        'request' => 'Web812\AlexmebelTheme\Http\Controller\FormController@userRequest',
     ];
 }

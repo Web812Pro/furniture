@@ -13,6 +13,7 @@
 
       <div class="modal-body">
         <form id="main-form" class="form-inline text-center" method="POST">
+          {{ csrf_field() }}
           <div class="form-group">
             <input
               id="phone"
