@@ -1,14 +1,13 @@
 <?php namespace Web812\AlexmebelTheme\Notification;
 
-use Illuminate\Bus\Queueable;
-use Illuminate\Notifications\Notification;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Anomaly\UsersModule\User\Contract\UserInterface;
 use Anomaly\Streams\Platform\Notification\Message\MailMessage;
+use Anomaly\UsersModule\User\Contract\UserInterface;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Notifications\Notification;
 
 class RequestFromSite extends Notification implements ShouldQueue
 {
-
     use Queueable;
 
     /**
@@ -50,8 +49,11 @@ class RequestFromSite extends Notification implements ShouldQueue
         $data = $notifiable->toArray();
 
         return (new MailMessage())
-        ->view('web812.theme.alexmebel::notifications.request')
-        ->subject(trans('web812.theme.alexmebel::notification.request.subject', $data))
-        ->greeting(trans('web812.theme.alexmebel::notification.request.greeting', $data))
-        ->line(trans('web812.theme.alexmebel::notification.request.instructions', $data));
+            ->view('web812.theme.alexmebel::notifications.request', [
+                'phone' => $this->request->get('phone'),
+            ])
+            ->subject(trans('web812.theme.alexmebel::notification.request.subject', $data))
+            ->greeting(trans('web812.theme.alexmebel::notification.request.greeting', $data))
+            ->line(trans('web812.theme.alexmebel::notification.request.instructions', $data));
+    }
 }
