@@ -14,10 +14,10 @@ class FormController extends \Anomaly\Streams\Platform\Http\Controller\FormContr
     public function request()
     {
         dd($this->request->method());
-        if (!$this->request->ajax() || $this->request->method() != 'post')
-        {
-            return $this->redirect->to('/');
-        }
+        // if (!$this->request->ajax() || $this->request->method() != 'post')
+        // {
+        //     return $this->redirect->to('/');
+        // }
 
         $data = $this->request->all();
 

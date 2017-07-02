@@ -50,8 +50,8 @@ class RequestFromSite extends Notification implements ShouldQueue
         $data = $notifiable->toArray();
 
         return (new MailMessage())
-        ->view('defr.module.apex::notifications.request_request')
-        ->subject(trans('defr.module.apex::notification.request_request.subject', $data))
-        ->greeting(trans('defr.module.apex::notification.request_request.greeting', $data))
-        ->line(trans('defr.module.apex::notification.request_request.instructions', $data));
+        ->view('web812.theme.alexmebel::notifications.request')
+        ->subject(trans('web812.theme.alexmebel::notification.request.subject', $data))
+        ->greeting(trans('web812.theme.alexmebel::notification.request.greeting', $data))
+        ->line(trans('web812.theme.alexmebel::notification.request.instructions', $data));
 }

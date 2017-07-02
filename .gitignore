@@ -1,6 +1,7 @@
 .env
 .coverage
 composer.lock
+sftp-config.json
 /bin
 /core
 /build
