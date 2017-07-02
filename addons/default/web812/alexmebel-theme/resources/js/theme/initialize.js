@@ -28,8 +28,5 @@ $(function () {
         return false;
     });
 
-<<<<<<< HEAD
-=======
     $phoneField.mask('+7 (999) 999-99-99');
->>>>>>> ba09c4505b8dd1be4bd2e1aa106158bf3d22bccb
 });

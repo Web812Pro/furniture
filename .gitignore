@@ -1,10 +1,7 @@
 .env
 .coverage
 composer.lock
-<<<<<<< HEAD
-=======
-sftp-config.json
->>>>>>> ba09c4505b8dd1be4bd2e1aa106158bf3d22bccb
+sftp-config.json*
 /bin
 /core
 /build
