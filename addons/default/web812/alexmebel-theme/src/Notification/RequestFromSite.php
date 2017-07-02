@@ -50,7 +50,7 @@ class RequestFromSite extends Notification implements ShouldQueue
 
         return (new MailMessage())
             ->view('web812.theme.alexmebel::notifications.request', [
-                'phone' => $this->request->get('phone'),
+                'phone' => array_get($this->request, 'phone'),
             ])
             ->subject(trans('web812.theme.alexmebel::notification.request.subject', $data))
             ->greeting(trans('web812.theme.alexmebel::notification.request.greeting', $data))
