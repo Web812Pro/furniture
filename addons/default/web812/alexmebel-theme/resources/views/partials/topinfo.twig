@@ -1,0 +1,72 @@
+<div class="mpadtopbot container">
+	<div class="row">
+		<div class="col-md-3">
+			<a 
+			 	href="{{ url("/") }}"
+			>
+				<div class="media">
+				  <div class="media-left media-middle">
+				      <img
+				      	class="media-object"
+				      	src="/files/images/logo.jpg"
+				      	alt="logo"
+				      />
+				  </div>
+				  <div class="media-body">
+				  	<h4 class="text-center">
+				  		{{ setting_value('streams::description') }}
+				  	</h4>
+				    <h3
+				     class="text-center media-heading"
+				    >
+				    	АЛЕКСАНДР
+				    </h3>
+				  </div>
+				</div>
+			</a>	
+		</div>
+		<div class="descr col-md-3">
+			<span>
+				Шкафы-купе на заказ за 3 дня.<br>
+				Цены ниже рынка на 27%<br>
+				<p
+			  style="text-transform: uppercase; margin-top: 10px;"
+				>
+				звоните прямо сейчас !!!
+				</p>
+			</span>
+		</div>
+		<div class="col-md-3">
+			<a 
+				class="tel"
+				href="tel:{{ setting_value('streams::phone') }}"
+				data-content="{{ setting_value('streams::phone') }}"
+				data-type="phone"
+			>
+				{{ setting_value('streams::phone') }}
+			</a>
+			<br>
+			<span>
+				с 9:00 до 20:00
+				<span style="color:red;">
+					без выходных
+				</span><br>
+				<span style="font-size: 1.8rem;">
+					во всех районах СПб и ЛО
+				</span>
+			</span>
+		</div>
+		<div class="col-md-3">
+			<a
+			 href="#modal-call"
+			 class="btn btn-primary navbar-btn"
+			 role="button"
+			 data-toggle="modal"
+			>
+				<span class="fa fa-calculator fa-2x">
+				</span>
+			Оставить заявку на расчет цены
+			</a>
+		</div>
+	</div>
+</div>
